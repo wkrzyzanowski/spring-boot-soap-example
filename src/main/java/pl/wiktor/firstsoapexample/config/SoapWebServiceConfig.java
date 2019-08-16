@@ -29,10 +29,10 @@ public class SoapWebServiceConfig extends WsConfigurerAdapter {
         return new SimpleXsdSchema(new ClassPathResource("users.xsd"));
     }
 
-    @Bean
-    public DefaultWsdl11Definition defaultWsdl11Definition() {
+    @Bean(name = "users")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setSchema(userSchema());
+        definition.setSchema(studentsSchema);
         definition.setLocationUri("/soapWS");
         definition.setPortTypeName("UserServicePort");
         definition.setTargetNamespace("http://wiktor.pl/first-soap-example");
